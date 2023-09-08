@@ -1,17 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Dengi.Pages;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Dengi
+namespace Dengi;
+
+/// <summary>
+///     Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    private ServiceProvider ServiceProvider { get; set; }
+
+    public App()
     {
+        var services = new ServiceCollection();
+        ConfigureServices(services);
+        ServiceProvider = services.BuildServiceProvider();
+    }
+
+    private void ConfigureServices(ServiceCollection services)
+    {
+        services.AddTransient<MainWindow>();
+        services.AddTransient<Category>();
+        services.AddTransient<Invoices>();
+        services.AddTransient<Reports>();
+        services.AddTransient<Sheduler>();
+    }
+
+    private void OnStartup(object sender, StartupEventArgs e)
+    {
+        var window = ServiceProvider.GetRequiredService<MainWindow>();
+        //window.DataContext = 
+        window.Show();
     }
 }

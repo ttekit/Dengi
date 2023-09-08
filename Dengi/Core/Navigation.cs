@@ -7,8 +7,8 @@ namespace Dengi.Core;
 
 public class Navigation
 {
-    private Frame _container;
-    private List<NavigationButton> _buttons;
+    private readonly List<NavigationButton> _buttons;
+    private readonly Frame _container;
     private ToggleButton _lastActivatedButton;
 
     public Navigation(Frame container)
@@ -26,10 +26,7 @@ public class Navigation
     private void ButtonOnCheckedDisableAnother(object sender, RoutedEventArgs e)
     {
         if (sender is not ToggleButton) return;
-        if (_lastActivatedButton != null)
-        {
-            _lastActivatedButton.IsChecked = false;
-        }
+        if (_lastActivatedButton != null) _lastActivatedButton.IsChecked = false;
         _lastActivatedButton = (ToggleButton)sender;
     }
 }

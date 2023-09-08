@@ -6,14 +6,14 @@ namespace Dengi.Core;
 
 public class NavigationButton
 {
-    private Page _page;
     private ToggleButton _button;
+    private Page _page;
 
     public NavigationButton(Frame container, ToggleButton button, Page content)
     {
         _button = button;
         _page = content;
-        
+
         _button.Checked += (sender, args) => container.Navigate(content);
     }
 
