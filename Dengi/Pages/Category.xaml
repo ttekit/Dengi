@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Dengi.Pages"
       mc:Ignorable="d"
-      Title="Categorypage" Height="450" Width="800">
+      Title="Categorypage" Height="450" Width="800"
+      Loaded="Category_OnLoaded"
+      >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -17,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <ToolBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <ComboBox Width="190" FontSize="20" x:Name="ComboBox_Categories" 
-                        ItemsSource="{Binding RootCategories}" SelectionChanged="ComboBox_Categories_OnSelectionChanged"></ComboBox>
+                        ItemsSource="{Binding AllCategories}" SelectionChanged="ComboBox_Categories_OnSelectionChanged"></ComboBox>
             <TextBox Width="190" FontSize="20" x:Name="TextBox_Category" Margin="15, 0"> </TextBox>
             <Button x:Name="SaveButton" FontSize="20" Margin="15, 0" Background="LightGreen" Foreground="White" Padding="15, 3" Click="SaveButton_OnClick">OK</Button>
             <Button x:Name="CancelButton" FontSize="20" Margin="15, 0" Background="Red" Foreground="White" Padding="15, 3" Click="CancelButton_OnClick">Cancel</Button>

@@ -22,26 +22,7 @@ public class DengiDBContext : DbContext
         optionsBuilder.UseSqlite(
             _connectionString);
     }
-
-    public void AddCategory(Category category)
-    {
-        Add(category);
-        SaveChanges();
-    }
-
-    public void RemoveCategory(Category category)
-    {
-        Remove(category);
-        SaveChanges();
-    }
-
-    public void UpdateCategory(Category category)
-    {
-        
-        Update(category);
-        SaveChanges();
-    }
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         Category[] categories =

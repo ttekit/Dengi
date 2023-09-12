@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Dengi.ViewModels;
+using Dengi.Views;
 
 namespace Dengi.Pages;
 
@@ -11,31 +12,52 @@ public partial class Category : Page
     public Category()
     {
         InitializeComponent();
-
         DataContext = MainWindow.WindowViewModel.CategoryPageViewModel;
     }
 
     private void ContextMenuItem_Add_Click(object sender, RoutedEventArgs e)
     {
         if (TreeView_Categories.SelectedItem == null) return;
+        if (TreeView_Categories.SelectedItem is not DB.Entities.Category) return;
 
-        var selectedItem = TreeView_Categories.SelectedItem.ToString();
-
-        MessageBox.Show(selectedItem);
+        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
+        AddItemDialog dialog = new AddItemDialog();
+        dialog.ShowDialog();
+        if (dialog.Result != null)
+        {
+            MainWindow.WindowViewModel.CategoryPageViewModel.AddCategory(new DB.Entities.Category()
+            {
+                Name = dialog.Result,
+                ParentId = selectedItem.Id
+            });
+            Refresh();
+        }
     }
 
     private void ContextMenuItem_Edit_Click(object sender, RoutedEventArgs e)
     {
         if (TreeView_Categories.SelectedItem == null) return;
+        if (TreeView_Categories.SelectedItem is not DB.Entities.Category) return;
 
-        var selectedItem = TreeView_Categories.SelectedItem.ToString();
+        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
+        AddItemDialog dialog = new AddItemDialog();
+        dialog.ShowDialog();
+        if (dialog.Result != null)
+        {
+            selectedItem.Name = dialog.Result;
+            MainWindow.WindowViewModel.CategoryPageViewModel.UpdateCategory(selectedItem); 
+            Refresh();
+        }
     }
 
     private void ContextMenuItem_Delete_Click(object sender, RoutedEventArgs e)
     {
         if (TreeView_Categories.SelectedItem == null) return;
 
-        var selectedItem = TreeView_Categories.SelectedItem.ToString();
+        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
+        MainWindow.WindowViewModel.CategoryPageViewModel.DeleteCategory(selectedItem);
+        Refresh();
+
     }
 
 
@@ -53,7 +75,7 @@ public partial class Category : Page
             DB.Entities.Category parentCategory = (DB.Entities.Category)ComboBox_Categories.SelectedItem;
             string text = TextBox_Category.Text;
             parentCategory.Name = text;
-            CategoryPageViewModel.DBContext.UpdateCategory(parentCategory);
+            MainWindow.WindowViewModel.CategoryPageViewModel.UpdateCategory(parentCategory);
             Refresh();
         }
     }
@@ -69,6 +91,13 @@ public partial class Category : Page
 
     private void Refresh()
     {
-        TreeView_Categories.ItemsSource = ((CategoryPageViewModel)DataContext).GetCategoriesThree;
+        TreeView_Categories.ItemsSource = MainWindow.WindowViewModel.CategoryPageViewModel.GetCategoriesThree;
+        TreeView_Categories.Items.Refresh();
+        TreeView_Categories.UpdateLayout();
+    }
+
+    private void Category_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        Refresh();
     }
 }
