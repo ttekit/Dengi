@@ -3,18 +3,40 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Dengi.Pages"
       mc:Ignorable="d"
       Title="Categorypage" Height="450" Width="800">
-    <Grid Background="HotPink">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
-        <TreeView Grid.Row="1" x:Name="CategoriesTreeView" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <ComboBox Width="190" FontSize="20" x:Name="ComboBox_Categories" 
+                        ItemsSource="{Binding RootCategories}" SelectionChanged="ComboBox_Categories_OnSelectionChanged"></ComboBox>
+            <TextBox Width="190" FontSize="20" x:Name="TextBox_Category" Margin="15, 0"> </TextBox>
+            <Button x:Name="SaveButton" FontSize="20" Margin="15, 0" Background="LightGreen" Foreground="White" Padding="15, 3" Click="SaveButton_OnClick">OK</Button>
+            <Button x:Name="CancelButton" FontSize="20" Margin="15, 0" Background="Red" Foreground="White" Padding="15, 3" Click="CancelButton_OnClick">Cancel</Button>
+        </ToolBar>
+        <TreeView Grid.Row="1" x:Name="TreeView_Categories" ItemsSource="{Binding GetCategoriesThree}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="0,0,4,0" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="_Add" Name="ContextMenuItem_Add" Click="ContextMenuItem_Add_Click"/>
+                    <MenuItem Header="_Edit" Name="ContextMenuItem_Edit" Click="ContextMenuItem_Edit_Click"/>
+                    <MenuItem Header="_Delete" Name="ContextMenuItem_Delete" Click="ContextMenuItem_Delete_Click"/>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
     </Grid>
 </Page>

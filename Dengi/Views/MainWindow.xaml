@@ -3,74 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Dengi.Core.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="22" />
             <RowDefinition />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="32" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" x:Name="MainControls_Grid" Background="Aqua">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="90" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <ToolBar Grid.Row="0" x:Name="Controls_ToolBar">
-                <ToggleButton x:Name="Home_ToggleButton">
-                    <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\home.png">
-                        <Image.ToolTip>
-                            <ToolTip Content="Main Dengi" />
-                        </Image.ToolTip>
-                    </Image>
-                </ToggleButton>
-                <ToggleButton x:Name="Reports_ToggleButton">
-                    <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\report.png">
-                        <Image.ToolTip>
-                            <ToolTip Content="Reports Dengi" />
-                        </Image.ToolTip>
-                    </Image>
-                </ToggleButton>
-                <ToggleButton x:Name="Invoices_ToggleButton">
-                    <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\invoice.png">
-                        <Image.ToolTip>
-                            <ToolTip Content="Invoices Dengi" />
-                        </Image.ToolTip>
-                    </Image>
-                </ToggleButton>
-                <ToggleButton x:Name="Sheduler_ToggleButton">
-                    <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\shedule.png">
-                        <Image.ToolTip>
-                            <ToolTip Content="Dengi Sheduler" />
-                        </Image.ToolTip>
-                    </Image>
-                </ToggleButton>
-                <ToggleButton x:Name="Category_ToggleButton">
-                    <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\category.png">
-                        <Image.ToolTip>
-                            <ToolTip Content="Dengi Categories" />
-                        </Image.ToolTip>
-                    </Image>
-                </ToggleButton>
-            </ToolBar>
-            <Frame Grid.Row="1" x:Name="MainContent_Page" />
-        </Grid>
-        <Menu>
+        <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="File">
                 <MenuItem Header="New DB" />
-                <MenuItem Header="Load DB" />
-                <MenuItem Header="Save DB" />
                 <MenuItem Header="Exit" />
             </MenuItem>
             <MenuItem Header="Edit" />
-            <MenuItem Header="Help" />
-            <MenuItem Header="Donate" Click="MenuItem_OnClick" />
         </Menu>
-
-        <StatusBarItem Grid.Row="2">
+        <uc:TabViews Grid.Row="1" Grid.Column="0" />
+        <StatusBar Grid.Row="2" Grid.Column="0">
             <StatusBarItem>
-                <Label x:Name="StatusLabel">Ready, but not to use</Label>
+                <Label x:Name="Label_StatusInfo">Ready....</Label>
             </StatusBarItem>
-        </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
