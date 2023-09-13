@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace Dengi.ViewModels
+namespace Dengi.ViewModels;
+
+public class MainWindowViewModel : ViewFinancesModel, INotifyPropertyChanged
 {
-    public class MainWindowViewModel:ViewFinancesModel, INotifyPropertyChanged
+    public CategoryPageViewModel CategoryPageViewModel;
+    public CurrencyViewModel CurrencyViewModel;
+
+    public MainWindowViewModel()
     {
-       public CategoryPageViewModel CategoryPageViewModel;
-
-        public MainWindowViewModel()
-        {
-            CategoryPageViewModel = new CategoryPageViewModel();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        CategoryPageViewModel = new CategoryPageViewModel();
+        CurrencyViewModel = new CurrencyViewModel();
     }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 }

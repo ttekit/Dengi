@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+Ffb4vY+9VVQ2e6gAzF9q5zz9AtLv8sdie3yTAXIy658fuyPSzsDEtxUZsz6cturSbzrRkXs4IJnYCoRRtOvkg==",
+  "dgSpecHash": "yPZNw2ZANmMKKpFKehaNsaHxV5VH034kEPxDUmpDj/q8ulsJ56nN0bb95BGVMBDhJVdODwutJONpLG+HOnUY1w==",
   "success": true,
   "projectFilePath": "E:\\Dengi\\Dengi\\Dengi.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\tekit\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\tekit\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\tekit\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\tekit\\.nuget\\packages\\nlohmann.json\\3.11.2\\nlohmann.json.3.11.2.nupkg.sha512",
     "C:\\Users\\tekit\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\tekit\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\tekit\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",

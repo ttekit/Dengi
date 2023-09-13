@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Dengi.ViewModels;
 using Dengi.Views;
 
 namespace Dengi.Pages;
@@ -20,12 +19,12 @@ public partial class Category : Page
         if (TreeView_Categories.SelectedItem == null) return;
         if (TreeView_Categories.SelectedItem is not DB.Entities.Category) return;
 
-        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
-        AddItemDialog dialog = new AddItemDialog();
+        var selectedItem = (DB.Entities.Category)TreeView_Categories.SelectedItem;
+        var dialog = new AddItemDialog();
         dialog.ShowDialog();
         if (dialog.Result != null)
         {
-            MainWindow.WindowViewModel.CategoryPageViewModel.AddCategory(new DB.Entities.Category()
+            MainWindow.WindowViewModel.CategoryPageViewModel.AddCategory(new DB.Entities.Category
             {
                 Name = dialog.Result,
                 ParentId = selectedItem.Id
@@ -39,13 +38,13 @@ public partial class Category : Page
         if (TreeView_Categories.SelectedItem == null) return;
         if (TreeView_Categories.SelectedItem is not DB.Entities.Category) return;
 
-        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
-        AddItemDialog dialog = new AddItemDialog();
+        var selectedItem = (DB.Entities.Category)TreeView_Categories.SelectedItem;
+        var dialog = new AddItemDialog();
         dialog.ShowDialog();
         if (dialog.Result != null)
         {
             selectedItem.Name = dialog.Result;
-            MainWindow.WindowViewModel.CategoryPageViewModel.UpdateCategory(selectedItem); 
+            MainWindow.WindowViewModel.CategoryPageViewModel.UpdateCategory(selectedItem);
             Refresh();
         }
     }
@@ -54,10 +53,9 @@ public partial class Category : Page
     {
         if (TreeView_Categories.SelectedItem == null) return;
 
-        DB.Entities.Category selectedItem = (DB.Entities.Category)(TreeView_Categories.SelectedItem);
+        var selectedItem = (DB.Entities.Category)TreeView_Categories.SelectedItem;
         MainWindow.WindowViewModel.CategoryPageViewModel.DeleteCategory(selectedItem);
         Refresh();
-
     }
 
 
@@ -72,8 +70,8 @@ public partial class Category : Page
         if (ComboBox_Categories.SelectedItem != null &&
             TextBox_Category.Text != ((DB.Entities.Category)ComboBox_Categories.SelectedItem).Name)
         {
-            DB.Entities.Category parentCategory = (DB.Entities.Category)ComboBox_Categories.SelectedItem;
-            string text = TextBox_Category.Text;
+            var parentCategory = (DB.Entities.Category)ComboBox_Categories.SelectedItem;
+            var text = TextBox_Category.Text;
             parentCategory.Name = text;
             MainWindow.WindowViewModel.CategoryPageViewModel.UpdateCategory(parentCategory);
             Refresh();
@@ -84,7 +82,7 @@ public partial class Category : Page
     {
         if (sender is ComboBox)
         {
-            ComboBox comboBox = (ComboBox)sender;
+            var comboBox = (ComboBox)sender;
             TextBox_Category.Text = ((DB.Entities.Category)comboBox.SelectedItem).Name;
         }
     }

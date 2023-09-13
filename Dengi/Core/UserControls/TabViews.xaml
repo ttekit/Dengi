@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Dengi.Core.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Grid.Row="1" x:Name="MainControls_Grid" Background="Aqua">
+    <Grid x:Name="MainControls_Grid" Background="Aqua">
         <Grid.RowDefinitions>
             <RowDefinition Height="90" />
             <RowDefinition />
@@ -38,6 +37,13 @@
                 <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\shedule.png">
                     <Image.ToolTip>
                         <ToolTip Content="Dengi Sheduler" />
+                    </Image.ToolTip>
+                </Image>
+            </ToggleButton>
+            <ToggleButton x:Name="Currency_ToggleButton" Click="ToggleButton_Main_Click">
+                <Image Source="E:\Dengi\Dengi\Assets\ToolPanelImages\currency.png">
+                    <Image.ToolTip>
+                        <ToolTip Content="Currency" />
                     </Image.ToolTip>
                 </Image>
             </ToggleButton>

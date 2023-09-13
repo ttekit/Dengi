@@ -1,9 +1,8 @@
 ﻿using Dengi.Core.DB;
 
-namespace Dengi.ViewModels
+namespace Dengi.ViewModels;
+
+public abstract class ViewFinancesModel
 {
-    abstract public class ViewFinancesModel
-    {
-        public static DengiDBContext DBContext { get; set; } = new DengiDBContext();
-    }
+    public static DengiDBContext DBContext { get; set; } = new();
 }

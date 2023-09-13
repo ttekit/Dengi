@@ -281,6 +281,9 @@
           }
         }
       },
+      "nlohmann.json/3.11.2": {
+        "type": "package"
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
         "type": "package",
         "dependencies": {
@@ -768,6 +771,19 @@
         "version.txt"
       ]
     },
+    "nlohmann.json/3.11.2": {
+      "sha512": "EqsjNxRtkXtKTT4DlZi+pKQ+SZA0+FOymCRHG5pnazQdU6rCEBnIrHFlaS0hketEP01UpS/bRWEETpJbA5ZLzA==",
+      "type": "package",
+      "path": "nlohmann.json/3.11.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/native/include/nlohmann/json.hpp",
+        "build/native/nlohmann.json.targets",
+        "nlohmann.json.3.11.2.nupkg.sha512",
+        "nlohmann.json.nuspec"
+      ]
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
       "sha512": "f5U8Sw0lRym8tTraJ2zm6OqcDrcrEVvcKDtYlKSLs3Ox9SerkwkPXiFXb/uiW0g2tJdUw6oBhsxI/l5DoRxXMg==",
       "type": "package",
@@ -1010,7 +1026,8 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "Microsoft.Data.Sqlite.Core >= 5.0.17",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.17"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.17",
+      "nlohmann.json >= 3.11.2"
     ]
   },
   "packageFolders": {
@@ -1059,6 +1076,10 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[5.0.17, )"
+          },
+          "nlohmann.json": {
+            "target": "Package",
+            "version": "[3.11.2, )"
           }
         },
         "imports": [

@@ -10,7 +10,7 @@ namespace Dengi.Core.UserControls;
 
 public partial class TabViews : UserControl
 {
-    public List<KeyValuePair<ToggleButton, Page>> Pages = new List<KeyValuePair<ToggleButton, Page>>();
+    public List<KeyValuePair<ToggleButton, Page>> Pages = new();
 
     public TabViews()
     {
@@ -22,6 +22,7 @@ public partial class TabViews : UserControl
         Pages.Add(new KeyValuePair<ToggleButton, Page>(Invoices_ToggleButton, new Invoices()));
         Pages.Add(new KeyValuePair<ToggleButton, Page>(Reports_ToggleButton, new Reports()));
         Pages.Add(new KeyValuePair<ToggleButton, Page>(Sheduler_ToggleButton, new Sheduler()));
+        Pages.Add(new KeyValuePair<ToggleButton, Page>(Currency_ToggleButton, new Currency()));
 
         MainContent_Page.Navigate(Pages.First().Value);
         Pages.First().Key.IsChecked = true;
@@ -38,9 +39,7 @@ public partial class TabViews : UserControl
                     ((ToggleButton)item).IsChecked = true;
                     foreach (var onePage in Pages)
                         if (onePage.Key == sender)
-                        {
                             MainContent_Page.Navigate(onePage.Value);
-                        }
                 }
             }
     }

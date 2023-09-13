@@ -9,14 +9,14 @@ namespace Dengi;
 /// </summary>
 public partial class App : Application
 {
-    private ServiceProvider ServiceProvider { get; set; }
-
     public App()
     {
         var services = new ServiceCollection();
         ConfigureServices(services);
         ServiceProvider = services.BuildServiceProvider();
     }
+
+    private ServiceProvider ServiceProvider { get; }
 
     private void ConfigureServices(ServiceCollection services)
     {

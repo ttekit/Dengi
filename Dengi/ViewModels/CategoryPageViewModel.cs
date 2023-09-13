@@ -4,96 +4,84 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Dengi.DB.Entities;
 
-namespace Dengi.ViewModels
+namespace Dengi.ViewModels;
+
+public class CategoryPageViewModel : ViewFinancesModel, INotifyPropertyChanged
 {
-    public class CategoryPageViewModel : ViewFinancesModel, INotifyPropertyChanged
+    public List<Category> Categories => DBContext.Categories.ToList();
+
+    public List<Category> RootCategories
     {
-        public List<Category> Categories => DBContext.Categories.ToList();
-
-        public List<Category> RootCategories
+        get
         {
-            get
-            {
-                var originalList = DBContext.Categories.Where(c => c.ParentId == null).ToList();
-                return originalList;
-            }
+            var originalList = DBContext.Categories.Where(c => c.ParentId == null).ToList();
+            return originalList;
         }
+    }
 
-        public List<Category> GetCategoriesThree
+    public List<Category> GetCategoriesThree
+    {
+        get
         {
-            get
-            {
-                List<Category> result = new List<Category>();
-                foreach (var parent in RootCategories)
-                {
-                    result.Add(GetParentWithChildrens(parent));
+            var result = new List<Category>();
+            foreach (var parent in RootCategories) result.Add(GetParentWithChildrens(parent));
 
-                }
-
-                return result;
-            }
+            return result;
         }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
 
-        private Category GetParentWithChildrens(Category parent)
-        {
-
-            foreach (var child in Categories)
+    private Category GetParentWithChildrens(Category parent)
+    {
+        foreach (var child in Categories)
+            if (parent.Id == child.ParentId)
             {
-
-                if (parent.Id == child.ParentId)
-                {
-                    if (child.SubCategories != null) GetParentWithChildrens(child);
-                    if (!parent.SubCategories.Contains(child))
-                    {
-                        parent.SubCategories.Add(child);
-                    }
-                }
+                if (child.SubCategories != null) GetParentWithChildrens(child);
+                if (!parent.SubCategories.Contains(child)) parent.SubCategories.Add(child);
             }
 
-            return parent;
-        }
+        return parent;
+    }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([CallerMemberName] string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(prop));
+    }
 
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+    public bool DeleteCategory(Category category)
+    {
+        if (category != null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            DBContext.Categories.Remove(category);
+            return DBContext.SaveChanges() == 0;
         }
 
-        public bool DeleteCategory(Category category)
+        return false;
+    }
+
+    public bool AddCategory(Category category)
+    {
+        if (category != null)
         {
-            if (category != null)
-            {
-                DBContext.Categories.Remove(category);
-                return DBContext.SaveChanges() == 0;
-            }
-
-            return false;
+            DBContext.Categories.Add(category);
+            return DBContext.SaveChanges() == 1;
         }
 
-        public bool AddCategory(Category category)
+        return false;
+    }
+
+    public bool UpdateCategory(Category category)
+    {
+        if (category != null)
         {
-            if (category != null)
-            {
-                DBContext.Categories.Add(category);
-                return DBContext.SaveChanges() == 1;
-            }
+            DBContext.Categories.Update(category);
 
-            return false;
+            return DBContext.SaveChanges() == 0;
         }
 
-        public bool UpdateCategory(Category category)
-        {
-            if (category != null)
-            {
-                DBContext.Categories.Update(category);
-
-                return DBContext.SaveChanges() == 0;
-            }
-
-            return false;
-        }
+        return false;
     }
 }

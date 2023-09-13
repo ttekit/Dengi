@@ -47,6 +47,10 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "nlohmann.json": {
+              "target": "Package",
+              "version": "[3.11.2, )"
             }
           },
           "imports": [
